@@ -27,16 +27,13 @@ function updateView() {
 }
 updateView();
 
-image.addEventListener("wheel", () => {
-  slider.currentIndex = slider.next();
-  updateView();
-});
-nextBtn.addEventListener("click", () => {
-  slider.currentIndex = slider.next();
-  updateView();
-});
+const btnSliderHandler = (direction = 'next') => () => {
+slider.currentIndex = slider[direction === 'next' ? 'nextIndex' : 'prevIndex'];
+updateView();
+}
 
-prevBtn.addEventListener("click", () => {
-  slider.currentIndex = slider.next();
-  updateView();
-});
+image.addEventListener("wheel", btnSliderHandler('wheel'));
+nextBtn.addEventListener("click",btnSliderHandler('next'));
+
+prevBtn.addEventListener("click", btnSliderHandler('prev'));
+
