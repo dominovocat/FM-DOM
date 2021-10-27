@@ -32,20 +32,32 @@ slider.currentIndex = slider[direction === 'next' ? 'nextIndex' : 'prevIndex'];
 updateView();
 }
 
-image.addEventListener("wheel", btnSliderHandler('wheel'));
+image.addEventListener('wheel', (e)=>{
+ const handler =  e.deltaY>0?btnSliderHandler('next'):btnSliderHandler('prev');
+ handler();
+});
 nextBtn.addEventListener("click",btnSliderHandler('next'));
 prevBtn.addEventListener("click", btnSliderHandler('prev'));
 
 //----------------------------------------//
 
-const uniqueBtn = document.getElementById('unique');
+// const uniqueBtn = document.getElementById('unique');
 
-uniqueBtn.addEventListener('click', (e)=>{
-  console.log(e.target.innerText)
-});
+// uniqueBtn.addEventListener('click', (e)=>{
+//   console.log(e.target.innerText)
+// });
 
-document.body.addEventListener('click', btnUniqHandler);
+// document.body.addEventListener('click', btnUniqHandler);
 
-function btnUniqHandler(e){
-  console.log(e.target.innerText)
-}
+// function btnUniqHandler(e){
+//   console.log(e.target.innerText)
+// }
+
+//-------------------------------------//
+
+const uniqueImg = document.getElementById('unique');
+
+const srcAttr = document.createAttribute('src');
+srcAttr.value = imagesDB[0];
+
+uniqueImg.setAttributeNode(srcAttr);
