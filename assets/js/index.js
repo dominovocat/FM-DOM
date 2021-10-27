@@ -34,6 +34,18 @@ updateView();
 
 image.addEventListener("wheel", btnSliderHandler('wheel'));
 nextBtn.addEventListener("click",btnSliderHandler('next'));
-
 prevBtn.addEventListener("click", btnSliderHandler('prev'));
 
+//----------------------------------------//
+
+const uniqueBtn = document.getElementById('unique');
+
+uniqueBtn.addEventListener('click', (e)=>{
+  console.log(e.target.innerText)
+});
+
+document.body.addEventListener('click', btnUniqHandler);
+
+function btnUniqHandler(e){
+  console.log(e.target.innerText)
+}
