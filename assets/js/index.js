@@ -62,35 +62,23 @@
 
 // uniqueImg.setAttributeNode(srcAttr);
 
-const [openBtn, closeBtn] = document.querySelectorAll("button");
+// const btns = document.querySelectorAll("button");
 
-const switchInnerText = (target) => {
-  const openElem = target === closeBtn ? openBtn : closeBtn;
-  const closeElem = target === closeBtn ? closeBtn : openBtn;
+// // console.log(btns[0].getAttribute("data-path"));
 
-  const buffer = openBtn.textContent;
-  openBtn.textContent = closeBtn.textContent;
-  closeBtn.textContent = buffer;
-
-  openBtn.addEventListener("mouseenter", switchInnerText);
-  closeBtn.removeEventListener("mouseenter", switchInnerText);
-};
-
-// const clickHandler = ({target})=>{
-// const openElem = target===closeBtn?openBtn:closeBtn;
-// const closeElem = target===closeBtn?closeBtn:openBtn;
-
-// const buffer = openBtn.textContent;
-// openBtn.textContent = closeBtn.textContent;
-// closeBtn.textContent = buffer;
-//   console.log(target)
+// const btnHandler = ({target:{dataset:{path}}})=>{
+//   console.log(path);
 // }
-const clickHandler = ({ target }) => {
-  console.log(target);
-};
+// for (const btn of btns) {
+//   btn.addEventListener("click", btnHandler)
+// }
+const btns = document.querySelectorAll('button');
+const root = document.getElementById('root');
 
-// openBtn.addEventListener("mouseenter", switchInnerText);
-closeBtn.addEventListener("mouseenter", switchInnerText);
+const btnHandler = ({target:{dataset:{color},parentNode:parentRoot}})=>{
+  parentRoot.style.backgroundColor = color;
+}
 
-openBtn.addEventListener("click", clickHandler);
-closeBtn.addEventListener("click", clickHandler);
+for(const btn of btns){
+  btn.addEventListener('click', btnHandler)
+}
