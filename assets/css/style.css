@@ -19,11 +19,21 @@ ul {
   justify-content: space-evenly;
 }
 .cardWrapper {
-  margin: 2rem;
+  display: flex;
+  align-items: flex-end;
+  margin: 1rem;
   border: 3px solid #ddd;
 }
 .cardContainer{
   text-align: center;
+}
+.cardImageWrapper{
+width: inherit;
+position: relative;
+height: 300px;
+}
+.initials{
+  
 }
 .cardImage{
   width: 300px;
