@@ -25,8 +25,10 @@ function createActorCards(actor) {
 
 cardsContainer.append(...HTMLElements);
 
-function createImageWrapper(actor){
+function createImageWrapper(actor) {
+  const { id, name } = actor;
   const imgWrapper = document.createElement("div");
+  imgWrapper.setAttribute("id", `wrapper${id}`);
   imgWrapper.classList.add("cardImageWrapper");
 
   const initials = document.createElement("div");
@@ -34,29 +36,39 @@ function createImageWrapper(actor){
   // initials.append(document.createTextNode(actor.name[0]));
   initials.append(
     document.createTextNode(
-      actor.name
+      name
         .split(" ")
         .map((n) => n[0])
         .join(".") || "noname"
     )
   );
-  initials.style.backgroundColor = stringToColour(actor.name || "");
+  initials.style.backgroundColor = stringToColour(name || "");
 
   imgWrapper.append(initials, createImage(actor));
   return imgWrapper;
 }
 
-function createImage({photo,name}){
+function createImage({ photo, name, id }) {
   const img = document.createElement("img");
   img.classList.add("cardImage");
-  img.setAttribute("src",photo);
-  img.setAttribute("alt",name);
+  img.setAttribute("src", photo);
+  img.setAttribute("alt", name);
+  img.dataset.id = id;
   img.addEventListener("error", handleImageError);
+  img.addEventListener("load", handleImageLoad);
   return img;
 }
 
 function handleImageError({ target }) {
   target.remove();
+}
+function handleImageLoad({
+  target,
+  target: {
+    dataset: { id },
+  },
+}) {
+  document.getElementById(`wrapper${target.dataset.id}`).append(target);
 }
 
 function stringToColour(str) {
