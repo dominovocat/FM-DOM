@@ -21,10 +21,10 @@ function createActorCards(actor) {
       actor.name
         .split(" ")
         .map((n) => n[0])
-        .join(".")
-    )
+        .join(".")|| 'noname'
+    ) 
   );
-  initials.style.backgroundColor = stringToColour(actor.name);
+  initials.style.backgroundColor = stringToColour(actor.name||'');
 
   const img = document.createElement("img");
   img.classList.add("cardImage");
@@ -36,11 +36,11 @@ function createActorCards(actor) {
 
   const name = document.createElement("h2");
   name.classList.add("cardName");
-  name.textContent = actor.name;
+  name.textContent = actor.name||'noname';
 
   const description = document.createElement("p");
   description.classList.add("cardDescription");
-  description.append(document.createTextNode(actor.birthdate));
+  description.append(document.createTextNode(actor.birthdate||'unknow'));
 
   container.append(imgWrapper, name, description);
   card.append(container);
