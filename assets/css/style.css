@@ -24,23 +24,36 @@ ul {
   margin: 1rem;
   border: 3px solid #ddd;
 }
-.cardContainer{
+.cardContainer {
+  width: 300px;
   text-align: center;
 }
-.cardImageWrapper{
-width: inherit;
-position: relative;
-height: 300px;
-}
-.initials{
-  
-}
-.cardImage{
-  width: 300px;
+.cardImageWrapper {
+  width: inherit;
+  position: relative;
   height: 300px;
+}
+.initials {
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(200,107,107);
+  color: #fff;
+  font-size: 4rem;
+}
+.cardImage {
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   object-fit: cover;
   object-position: top;
 }
-.cardName, .cardDescription{
+.cardName,
+.cardDescription {
   margin: 1rem;
 }
