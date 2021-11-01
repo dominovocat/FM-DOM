@@ -3,27 +3,34 @@
 const cardsContainer = document.getElementById("cardsContainer");
 const HTMLElements = actors.map((actor) => createActorCards(actor));
 
-function createActorCards(actor) {
-  const card = document.createElement("li");
-  card.classList.add("cardWrapper");
-
-  const container = document.createElement("article");
-  container.classList.add("cardContainer");
-
-  const name = document.createElement("h2");
-  name.classList.add("cardName");
-  name.textContent = actor.name || "noname";
-
-  const description = document.createElement("p");
-  description.classList.add("cardDescription");
-  description.append(document.createTextNode(actor.birthdate || "unknow"));
-
-  container.append(createImageWrapper(actor), name, description);
-  card.append(container);
-  return card;
+function createActorCards(actor){
+  return createElement('li',{classNames:['cardWrapper']},[
+    createElement('article',{classNames:['cardContainer']},[
+      createImageWrapper(actor),
+      createElement('h2',{classNames:['cardName']},[
+        document.createTextNode(actor.name||'noname')
+      ]),
+      createElement('p',{classNames:['cardDescription']},[
+        document.createTextNode(actor.birthdate||'unknow')
+      ]),
+    ])
+  ])
 }
 
 cardsContainer.append(...HTMLElements);
+
+/**
+ * 
+ * @param {String} type 
+ * @param {object} options 
+ * @param {Node[]} children 
+ */
+function createElement(type,{classNames},children){
+  const elem = document.createElement(type);
+  elem.classList.add(...classNames);
+  elem.append(...children);
+  return elem;
+}
 
 function createImageWrapper(actor) {
   const { id, name } = actor;
