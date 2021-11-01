@@ -38,8 +38,8 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(200,107,107);
-  color: #fff;
+  /* background-color: rgb(200,107,107); */
+  color: rgb(255, 255, 255);
   font-size: 4rem;
 }
 .cardImage {
