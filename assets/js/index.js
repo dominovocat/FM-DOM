@@ -1,31 +1,33 @@
 "use strict";
 
 const cardsContainer = document.getElementById("cardsContainer");
-const HTMLElements = actors.map((actor) => createActorCards(actor));
+const HTMLElements = actors
+  .filter((actor) => actor.name && actor.birthdate && actor.photo)
+  .map((actor) => createActorCards(actor));
 
-function createActorCards(actor){
-  return createElement('li',{classNames:['cardWrapper']},[
-    createElement('article',{classNames:['cardContainer']},[
+function createActorCards(actor) {
+  return createElement("li", { classNames: ["cardWrapper"] }, [
+    createElement("article", { classNames: ["cardContainer"] }, [
       createImageWrapper(actor),
-      createElement('h2',{classNames:['cardName']},[
-        document.createTextNode(actor.name||'noname')
+      createElement("h2", { classNames: ["cardName"] }, [
+        document.createTextNode(actor.name || "noname"),
       ]),
-      createElement('p',{classNames:['cardDescription']},[
-        document.createTextNode(actor.birthdate||'unknow')
+      createElement("p", { classNames: ["cardDescription"] }, [
+        document.createTextNode(actor.birthdate || "unknow"),
       ]),
-    ])
-  ])
+    ]),
+  ]);
 }
 
 cardsContainer.append(...HTMLElements);
 
 /**
- * 
- * @param {String} type 
- * @param {object} options 
- * @param {Node[]} children 
+ *
+ * @param {String} type
+ * @param {object} options
+ * @param {Node[]} children
  */
-function createElement(type,{classNames},children){
+function createElement(type, { classNames }, children) {
   const elem = document.createElement(type);
   elem.classList.add(...classNames);
   elem.append(...children);
@@ -51,19 +53,21 @@ function createImageWrapper(actor) {
   );
   initials.style.backgroundColor = stringToColour(name || "");
 
-  imgWrapper.append(initials, createImage(actor));
+  imgWrapper.append(initials);
+  createImage(actor);
   return imgWrapper;
 }
 
 function createImage({ photo, name, id }) {
   const img = document.createElement("img");
+  img.dataset.id = id;
   img.classList.add("cardImage");
   img.setAttribute("src", photo);
   img.setAttribute("alt", name);
-  img.dataset.id = id;
+
   img.addEventListener("error", handleImageError);
   img.addEventListener("load", handleImageLoad);
-  return img;
+  // return img;
 }
 
 function handleImageError({ target }) {
