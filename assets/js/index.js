@@ -1,63 +1,43 @@
 "use strict";
 
-const messageArray = [];
+const btn = document.getElementById('btn');
+btn.addEventListener('click', btnHandler);
+function btnHandler(){
 
-const form = document.getElementById("root-form");
-const list = document.getElementById("list");
-
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const {
-    target: { textInput },
-  } = e;
-  const inputValue = textInput.value.trim();
-  const validation = /(^[A-Z][a-z]{2,12}$)/;
-  const validator = /^[A-Z][a-z]{2,12} ([A-Z]\.){2}$/;
-  const validationForImages = /^(\w+|\.|\-){1,}\.(jpg|png)$/;
-  if (validation.test(inputValue) && !messageArray.includes(inputValue)) {
-    messageArray.push(inputValue);
-    form.reset();
-    const li = createElement(
-      "li",
-      { classNames: ["item"] },
-      document.createTextNode(inputValue)
-    );
-    const button = createElement(
-      "button",
-      {
-        typeEvent: "click",
-        onClick: removeData.bind(li),
-        dataValue: inputValue,
-      },
-      document.createTextNode("X")
-    );
-    li.append(button);
-    list.append(li);
-  }
-  console.dir(messageArray);
-});
-
-function removeData({
-  target: {
-    dataset: { value },
-  },
-}) {
-  this.remove();
-  messageArray.splice(messageArray.indexOf(value), 1);
 }
-function createElement(
-  type,
-  { dataValue = "", classNames = [], typeEvent = "", onClick = null },
-  ...children
-) {
-  const elem = document.createElement(type);
-  if (dataValue) {
-    elem.dataset.value = dataValue;
+
+const identificator = setTimeout(()=>{
+  console.log('hi')
+},1000)
+
+clearTimeout(identificator);
+
+
+// counter();
+// function counter(){
+//   let i=0;
+//   const id = setInterval(() => {
+//     console.log(i++)
+//     if(i>10){
+//       clearInterval(id);
+//     }
+//   }, 1000);
+// }
+
+const array = [1,2,3,4,5,6,7,8,9,10]
+counter2();
+function counter2(){
+  array.forEach(array => {
+    setTimeout(() => {
+      console.log(array)
+    }, 5000);
+  })};
+
+  counter3();
+  function counter3(){
+    setTimeout(() => {
+      array.forEach(e => {
+        console.log()
+      });
+    }, 1000);
   }
-  if (classNames.length) {
-    elem.classList.add(...classNames);
-  }
-  elem.addEventListener(typeEvent, onClick);
-  elem.append(...children);
-  return elem;
-}
