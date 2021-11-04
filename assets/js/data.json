@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Elon",
+    "sname": "Musk",
+    "age": 50,
+    "children": [1, 2, 3, "one", "two"],
+    "isAdult": true,
+    "isUkraine": null,
+    "friends": { 
+      "friend": "Tom",
+      "firend2": "Tim" 
+    }
+  },
+
+  {
+    "string":"",
+    "number":123,
+    "logic":true,
+    "nothink":null,
+    "massiv":["one","two",1,2,3]
+  }
+]
