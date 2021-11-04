@@ -12,7 +12,6 @@
 
 // clearTimeout(identificator);
 
-
 // counter();
 // function counter(){
 //   let i=0;
@@ -24,44 +23,43 @@
 //   }, 1000);
 // }
 
+//легальный цикл//
+// let i=0;
+// function f() {
+//   console.log(i++);
+//   setTimeout(() => {
+//     f();
+//   },0)
+// }
 
-const user = {
-  name: 'Elon',
-  sname: 'Musk',
-  age:50,
-  getFuulName(){
-    return `${this.name} ${this.sname}`;
-  },
-  children:[1,2,3,'one','two'],
-  isAdult:true,
-  hasPet:undefined,
-  isUkraine:null,
-  [Symbol('chepuha')]:123,
-  friends:{
-    friend:'Tom',
-    firend2:'Tim',
+// promise.then((response)=>{
+//   console.log('ok');
+//   console.log(response)
+//   const jsonPromise = response.json();
+//   jsonPromise.then((data)=>{
+//     console.table(data)
+//   })
+// });
+
+fetch("./assets/js/data.json")
+  .then((Response) => Response.json())
+  .then((data) => {
+    // console.log(data);
+    data.forEach((user) => {
+      console.log(user.name);
+    });
+  })
+  .catch((error) => {
+    console.log(error);
+  })
+  .finally(() => {
+    console.log("end");
+  });
+
+  const myFirstPromise = new Promise(executor);
+
+  function executor(resolve,reject){
+    Math.random()>0.5?resolve():reject();
   }
-}
 
-const serializeUser = JSON.stringify(user);
-console.log(serializeUser)
-
-const deserializeUser = JSON.parse(serializeUser);
-console.log(deserializeUser);
-
-
-const obj = {
-  string:'',
-  number:123,
-  logic:true,
-  nothink:null,
-  somethink:undefined,
-  massiv:['one','two',1,2,3]
-}
-console.log(obj);
-
-const serializeObj = JSON.stringify(obj);
-console.log(serializeObj)
-
-const deserializeObj = JSON.parse(serializeObj);
-console.log(deserializeObj);
+  
